@@ -5,20 +5,26 @@ import {faChevronRight, faChevronLeft, faCircle, faCheckCircle, faPlus} from '@f
 
 const App = () => {
     const [items,
-        setItems] = useState([]);
+        setItems] = useState([
+        {
+            itemName: 'item 1',
+            quantity: 1,
+            isSelected: false
+        }
+    ]);
 
     const [totalItemCount, setTotalItemCount] = useState(6);
 
     const [inputValue, setInputValue] = useState('');
 
-    const saveToLocalStorage = (items) => {
-      localStorage.setItem('item-list', JSON.stringify(items));
-    }
+    // const saveToLocalStorage = (items) => {
+    //   localStorage.setItem('item-list', JSON.stringify(items));
+    // }
 
-    useEffect(() => {
-      const allItems = JSON.parse(localStorage.getItem('item-list'))
-      setItems(allItems); 
-    }, []);
+    // useEffect(() => {
+    //   const allItems = JSON.parse(localStorage.getItem('item-list'))
+    //   setItems(allItems); 
+    // }, []);
 
     const handleAddButtonClick = () => {
       const newItem= {
@@ -30,7 +36,7 @@ const App = () => {
       const newItems = [...items, newItem];
       setItems(newItems);
       setInputValue('');
-      saveToLocalStorage(newItems);
+      // saveToLocalStorage(newItems);
       calculateTotal();
     }
 
@@ -45,7 +51,7 @@ const App = () => {
       const newItems = [...items];
       newItems[index].quantity++;
       setItems(newItems);
-           saveToLocalStorage(newItems);
+      // saveToLocalStorage(newItems);
       calculateTotal();
     }
 
@@ -53,7 +59,7 @@ const App = () => {
       const newItems = [...items];
       newItems[index].quantity--;
       setItems(newItems);
-           saveToLocalStorage(newItems);
+      // saveToLocalStorage(newItems);
       calculateTotal();
     }
 
